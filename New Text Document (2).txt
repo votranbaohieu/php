@@ -1,0 +1,61 @@
+tao project laravel:
+	composer create-project --prefer-dist laravel/laravel LaravelDemo
+tao controller:
+	php artisan make:controller ten_controller
+tao model:
+	php artisan make:model ten_model
+tao middleware:
+	php artisan make:middleware ten_middleware
+
+********************************
+$theloai = TheLoai::find($id);
+********************************
+
+ {{$khoahoc}}  		nhan html         in ra man hinh
+ {!!$khoahoc!!}		khong nhan html		in ra man hinh
+bcrypt("Mat khau") // ma hoa
+include('');   yiel('');
+
+*************
+php artisan db:seed
+php artisan migrate:refresh
+ php artisan migrate:reset 
+php artisan migrate
+php artisan migrate:rollback  
+php artisan make:migration table_sanpham 
+**************
+tạo 1 route
+	Route::get('/hieu', function () {
+    		return "xin chao cac ban";
+	}); 
+	Route::get('users/{id}', function ($id) {
+    		echo "ten cua ban la: ".$id;	
+	}); truyen thong so id.
+	chuyen route
+		return redirect()->route('MyRoute2');
+	goi controller
+		Route::get('GoiController', 'MyController@XinChao' );
+			ten Route	ten controller@ten funtion
+************************** group rout admin/theloai/danhsach  admin/slide/danhsach
+	Route::group(['prefix'=>'admin'], function () {
+		 Route::group(['prefix' => 'theloai'], function () {
+       			 Route::get('danhsach', 'TheLoaiController@getDanhSach');
+       			 Route::get('sua', 'TheLoaiController@getSua');
+      		});
+    		Route::group(['prefix' => 'slide'], function () {
+        		Route::get('danhsach', 'SlideController@getDanhSach');
+    		});
+	});
+
+********************** check lỗi
+ $this->validate($request,
+        ['Ten'=>'required|min:3|max:100|unique:TheLoai,Ten'],
+        ['Ten.required'=>'Bạn chưa nhập têm thể loại',
+        'Ten.min'=>'Bạn phải nhập tên có độ dài 3 đến 100 ký tự',
+        'Ten.max'=>'Bạn phải nhập tên có độ dài 3 đến 100 ký tự',
+        'Ten.unique'=>'tên thể loại đã tồn tại',
+        ]);
+
+@if($loaitin->idTheLoai==$tl->id)
+        {{"selected"}}
+@endif
